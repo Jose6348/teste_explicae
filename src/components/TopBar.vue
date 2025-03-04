@@ -18,11 +18,11 @@
       }
   
       onMounted(() => {
-        setInterval(updateTime, 1000) // Atualiza o horário a cada segundo
+        setInterval(updateTime, 1000) // Atualizar as horas
       })
   
       onUnmounted(() => {
-        clearInterval(updateTime) // Limpa o intervalo ao desmontar
+        clearInterval(updateTime) 
       })
   
       return { currentTime }
