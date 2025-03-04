@@ -38,15 +38,14 @@
     text-decoration: none;
   }
   
-  /* Adiciona uma linha roxa maior no hover */
   .nav-bar a:hover::after {
     content: '';
     position: absolute;
-    bottom: -5px; /* Ajusta a distância da linha do texto */
+    bottom: -5px; 
     left: 0;
-    width: 100%; /* Cobrir todo o texto */
-    height: 5px; /* Espessura da linha */
-    background-color: #8b02ca; /* Cor roxa */
-    transition: all 0.3s ease; /* Suaviza a animação */
+    width: 100%; 
+    height: 5px; 
+    background-color: #8b02ca; 
+    transition: all 0.3s ease; 
   }
   </style>
