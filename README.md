@@ -114,7 +114,8 @@ Atualize package.json:
 execute: 
 
 ```
-
+npm run coverage
+```
 
 ## Licença
 
