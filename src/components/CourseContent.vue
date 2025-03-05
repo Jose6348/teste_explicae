@@ -1,27 +1,28 @@
 <template>
     <div class="course-content">
         <!-- Seções de cadernos -->
-        <div v-for="(notebook, index) in notebooks" :key="index" class="notebook-container">
+        <div v-for="(notebook, index) in notebooks" :key="index" 
+             class="notebook-container" 
+             :class="{ 'morfologia-section': notebook.title === '- 2.2 Morfologia' }">
             <div class="notebook-item">
                 <h2 :class="{ 'sub-section': notebook.title.startsWith('-') }">
                     {{ notebook.title }}
                 </h2>
                 <div v-for="(lesson, lessonIndex) in notebook.lessons" :key="lessonIndex" class="lesson">
-                    <h3 :class="{ 'sub-lesson': lesson.title.startsWith('+') || lesson.title.startsWith('-') }">
+                    <h3 :class="{ 'sub-lesson': lesson.title.startsWith('+') || lesson.title.startsWith('-'), 'lesson-sub-section': lesson.title.startsWith('-') }">
                         {{ lesson.title }}
                     </h3>
                     <ul class="detail-row">
-                        <p v-for="(detail, detailIndex) in lesson.details" :key="detailIndex" class="detail-item" v-html="formatDetail(detail)"></p>
+                        <p v-for="(detail, detailIndex) in lesson.details" :key="detailIndex" class="detail-item"
+                            v-html="formatDetail(detail)"></p>
                     </ul>
-                    <!-- <button @click="addLessonDetail(index, lessonIndex)">Adicionar Detalhe</button> -->
                 </div>
-                <!-- <button @click="addLesson(index)">Adicionar Subtópico</button> -->
             </div>
         </div>
 
         <!-- Seção Técnica + Questões Orientadas -->
         <div class="progress-section">
-            <h2>Técnica + Questões Orientadas</h2>
+            <h2>TEORIA + QUESTÕES ORIENTADAS</h2>
             <div class="progress-info">
                 <span v-html="formatProgressInfo('4 aulas | 00:55:29')"></span>
             </div>
@@ -34,12 +35,11 @@
             <div v-for="(lesson, index) in additionalLessons" :key="index" class="additional-lesson">
                 <h3>{{ lesson.title }}</h3>
                 <ul>
-                    <li v-for="(detail, detailIndex) in lesson.details" :key="detailIndex" v-html="formatDetail(detail)"></li>
+                    <li v-for="(detail, detailIndex) in lesson.details" :key="detailIndex"
+                        v-html="formatDetail(detail)"></li>
                 </ul>
             </div>
         </div>
-
-        <!-- <button @click="addNotebook">Adicionar Novo Caderno</button> -->
     </div>
 </template>
 
@@ -120,47 +120,16 @@ export default {
 
         const additionalLessons = ref([
             {
-                title: 'B. Classes de Palavras',
+                title: '+ B. Classes de Palavras',
                 details: ['Aulas: 27 | 04h 41m', 'Exercícios: 01 | 00h 21m', 'Materiais: 01 | 02h 09m']
             },
             {
-                title: '2.3 Sintaxe',
+                title: '+ 2.3 Sintaxe',
                 details: ['Aulas: 48 | 07h 54m', 'Exercícios: 16 | 06h 03m ', 'Materiais: 06 | 05h 27m']
             }
         ])
 
         const selectedTopics = ref([])
-
-        const addNotebook = () => {
-            const customTitle = prompt('Digite o título do novo caderno (ex.: 3. Novo Tópico):')
-            if (customTitle) {
-                notebooks.value.push({
-                    title: customTitle,
-                    lessons: []
-                })
-            }
-        }
-
-        const addLesson = (notebookIndex) => {
-            const customTitle = prompt('Digite o título da nova aula (ex.: + Novo Subtópico):')
-            if (customTitle) {
-                notebooks.value[notebookIndex].lessons.push({
-                    title: customTitle,
-                    details: ['Aulas: -', 'Exercícios: -', 'Materiais: -']
-                })
-            }
-        }
-
-        const addLessonDetail = (notebookIndex, lessonIndex) => {
-            const detailType = prompt('Digite o tipo de detalhe (Aulas, Exercícios ou Materiais) e o tempo (ex.: Aulas: 1h):')
-            if (detailType) {
-                const [type, time] = detailType.split(':')
-                const details = notebooks.value[notebookIndex].lessons[lessonIndex].details
-                if (type.trim() === 'Aulas') details[0] = `Aulas: ${time.trim()}`
-                else if (type.trim() === 'Exercícios') details[1] = `Exercícios: ${time.trim()}`
-                else if (type.trim() === 'Materiais') details[2] = `Materiais: ${time.trim()}`
-            }
-        }
 
         const formatDetail = (detail) => {
             if (detail && detail.includes(':')) {
@@ -181,17 +150,14 @@ export default {
             return `<strong>(${duration})</strong>`;
         };
 
-        return { 
-            notebooks, 
-            addNotebook, 
-            addLesson, 
-            addLessonDetail, 
-            progressTopics, 
-            selectedTopics, 
-            additionalLessons, 
-            formatDetail, 
-            formatProgressInfo, 
-            formatDuration 
+        return {
+            notebooks,
+            progressTopics,
+            selectedTopics,
+            additionalLessons,
+            formatDetail,
+            formatProgressInfo,
+            formatDuration
         };
     }
 }
@@ -213,7 +179,22 @@ export default {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.morfologia-section {
+    background-color: #e6c3e6; 
+    color: #fff; 
+}
 
+.morfologia-section .notebook-item h2,
+.morfologia-section .lesson h3,
+.morfologia-section .detail-row,
+.morfologia-section .detail-item {
+    background-color: #e6c3e6; 
+    color: #000000; 
+}
+
+.morfologia-section .detail-item strong {
+    color: #000000; 
+}
 
 .notebook-item h2 {
     font-size: 1.7em;
@@ -238,6 +219,18 @@ export default {
     margin: 5px 0;
     padding-left: 40px;
     color: #000;
+    font-weight: normal;
+}
+
+.lesson-sub-section {
+    background-color: #e6c3e6;
+    padding: 5px 10px;
+    margin: 10px 0 5px 40px;
+    color: #000000;
+    font-weight: normal;
+    width: auto;
+    height: 50px;
+    align-content: center;
 }
 
 .sub-lesson {
@@ -262,29 +255,6 @@ export default {
 .duration strong {
     font-weight: bold;
 }
-
-/* button {
-    margin: 5px 0 5px 40px;
-    padding: 8px 15px;
-    background-color: #42b983;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: inline-block;
-    width: fit-content;
-    transition: background-color 0.3s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} */
-
-/* button:hover {
-    background-color: #369d6b;
-}
-
-button::before {
-    content: '+';
-    margin-right: 5px;
-} */
 
 .progress-section {
     margin-top: 20px;
@@ -332,13 +302,14 @@ button::before {
     font-size: 1.1em;
     margin-bottom: 5px;
     display: flex;
+    font-weight: normal;
 }
 
 .additional-lesson ul {
     list-style-type: none;
     padding: 0;
     display: flex;
-    gap: 20px;    
+    gap: 20px;
 }
 
 .additional-lesson p {
