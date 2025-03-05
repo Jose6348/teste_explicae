@@ -94,9 +94,9 @@ Acesse em http://localhost:8080.
 
 ## Cobertura de código com Vitest
 
-# Medir o quanto do seu código está sendo testado: Mostra a porcentagem de linhas, funções e condições (branches) cobertas pelos testes.
-# Identificar partes não testadas: Aponta quais partes do seu código (ex.: funções ou arquivos) não têm testes, ajudando a melhorar a qualidade.
-# Garantir robustez: Dá mais confiança de que mudanças no código não vão quebrar funcionalidades existentes.
+### Medir o quanto do seu código está sendo testado: Mostra a porcentagem de linhas, funções e condições (branches) cobertas pelos testes.
+### Identificar partes não testadas: Aponta quais partes do seu código (ex.: funções ou arquivos) não têm testes, ajudando a melhorar a qualidade.
+### Garantir robustez: Dá mais confiança de que mudanças no código não vão quebrar funcionalidades existentes.
 
 Executar: 
 
