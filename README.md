@@ -55,24 +55,50 @@ O desafio consistiu em desenvolver uma aplicação baseada na imagem fornecida, 
 cd teste-explicae
 
 3. Instale as dependências:
+```
 npm install
+```
 
 ## Uso
 Desenvolvimento Local
 
 Para compilar e iniciar o servidor de desenvolvimento com hot-reload:
+
+```
 npm run serve
+```
 
 - A aplicação estará disponível em http://localhost:8080 (ou a porta informada no terminal).
 
 ## Build para Produção
 
 Para compilar e minificar para produção:
+
+```
 npm run build
+```
 
 - Os arquivos serão gerados na pasta dist.
 
+## Containerização com Docker
 
+Construa a imagem Docker:
+docker build -t meu-app-vue 
+
+Execute o container:
+docker run -d -p 8080:80 --name meu-app-container meu-app-vue
+
+Acesse em http://localhost:8080.
+
+
+## Licença
+
+Este projeto está sob a licença MIT.
+
+
+## Agradecimentos
+
+Agradeço à equipe da Explicae pela oportunidade de demonstrar minhas habilidades neste teste técnico.
 
 ## Project setup
 ```
