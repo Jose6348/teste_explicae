@@ -83,12 +83,37 @@ npm run build
 ## Containerização com Docker
 
 Construa a imagem Docker:
+```
 docker build -t meu-app-vue 
-
+```
 Execute o container:
+```
 docker run -d -p 8080:80 --name meu-app-container meu-app-vue
-
+```
 Acesse em http://localhost:8080.
+
+## Cobertura de código com Vitest
+
+Medir o quanto do seu código está sendo testado: Mostra a porcentagem de linhas, funções e condições (branches) cobertas pelos testes.
+Identificar partes não testadas: Aponta quais partes do seu código (ex.: funções ou arquivos) não têm testes, ajudando a melhorar a qualidade.
+Garantir robustez: Dá mais confiança de que mudanças no código não vão quebrar funcionalidades existentes.
+
+Executar: 
+
+```
+npm install --save-dev vitest @vitest/coverage-istanbul
+```
+
+Atualize package.json:
+
+"scripts": {
+  "test": "vitest",
+  "coverage": "vitest run --coverage"
+}
+
+execute: 
+
+```
 
 
 ## Licença
