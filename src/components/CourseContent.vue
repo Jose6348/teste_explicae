@@ -199,7 +199,7 @@ export default {
   color: #000;
   font-weight: normal;
   width: auto;
-  height: 40px;
+  height: 60px;
   align-content: center;
   cursor: pointer;
 }
